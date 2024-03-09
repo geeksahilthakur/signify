@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signify</title>
+    <title>Signify | Home</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <style>
@@ -33,15 +33,152 @@
         font-family:Georgia, 'Times New Roman', Times, serif;
         font-size: 30px;
     }
+    
+    .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 252, 252, 0.897);
+            backdrop-filter : blur(10px);
+            z-index: 999;
+        }
+
+        .popup-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;;
+            transform: translate(-50%, -50%);
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+        @keyframes popupIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes popupOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.2);
+    }
+}
+
+.popup.animate-in {
+    animation: popupIn 0.5s ease-out forwards;
+}
+
+.popup.animate-out {
+    animation: popupOut 0.5s ease-out forwards;
+}
+
+    .btn {
+  font-size: 25px;
+  font-weight: 900;
+  background: transparent;
+  border: none;
+  padding: 1em 1em;
+  color: #000000;
+  text-transform: uppercase;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  transition: 0.5s ease;
+  cursor: pointer;
+  text-decoration: #ffc506 underline;
+
+
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background-color: #ffc506;
+  transition: 0.5s ease;
+}
+
+.btn:hover {
+  color: #1e1e2b;
+  transition-delay: 0.5s;
+}
+
+.btn:hover::before {
+  width: 100%;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 0;
+  width: 100%;
+  background-color: #ffc506;
+  transition: 0.4s ease;
+  z-index: -1;
+}
+
+.btn:hover::after {
+  height: 100%;
+  transition-delay: 0.4s;
+  color: aliceblue;
+}
+
 </style>
 <body>
     <center>
+    <div class="popup" id="popu">
+        <div class="popup-content">
+          <img src="../static/logotop.gif" width="85%">
+        </div>
+      </div>
+
     <img class="logo" src="../static/logotop.gif">
     <div id="Welcome"></div>
     <img class="Webcam" id="video_feed" src="{{ url_for('video_feed') }}" width="40%" height="550">
     <h3>User said</h3>
     <div class="back"id="class_name">Loading...</div></center>
+    <a class="btn" href="{{ url_for('sign') }}">Sign Chart</a>
     <script>
+         document.addEventListener("DOMContentLoaded", function() {
+    var popup = document.getElementById('popu');
+    popu.style.display = 'block';
+
+    popup.classList.add('animate-in');
+    
+    setTimeout(function() {
+        popup.classList.remove('animate-in');
+        popup.classList.add('animate-out');
+
+        setTimeout(function() {
+            popu.style.display = 'none';
+        }, 500);
+    }, 3000);
+});
+
+
+
         $(document).ready(function(){
             var previousClassName = "";
 
