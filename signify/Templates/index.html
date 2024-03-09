@@ -3,13 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Feed</title>
+    <title>Signify</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
+<style>
+    .logo{
+        height: 70px;
+    }
+    .back{
+        background-color:#FFD426;
+        width:15%;
+        border: 2px solid #FFD426;
+         border-radius: 25px;
+    }
+    .Webcam{
+        box-shadow: rgba(246, 217, 0, 1) 0px 2px 12px;
+        border: 1px solid black;
+        border-radius: 25px;
+    }
+    .logo{
+        padding-bottom: 30px;
+        padding-top: 5px;
+    }
+    h3{
+        text-decoration:dotted;
+        font-family:Georgia, 'Times New Roman', Times, serif;
+    }
+</style>
 <body>
-    <h1>Video Feed with Class Name</h1>
-    <img id="video_feed" src="{{ url_for('video_feed') }}" width="640" height="480">
-    <div id="class_name">Class Name: Loading...</div>
+    <center>
+    <img class="logo" src="../static/logotop.gif">
+    <div id="Welcome"></div>
+    <img class="Webcam" id="video_feed" src="{{ url_for('video_feed') }}" width="400" height="300">
+    <h3>User said</h3>
+    <div class="back"id="class_name">Loading...</div></center>
     <script>
         $(document).ready(function(){
             var previousClassName = ""; // Variable to store the previous class name
@@ -27,10 +54,8 @@
                     success: function(response){
                         var className = response.class_name;
 
-                        // Update the displayed class name
-                        $("#class_name").text("Class Name: " + className);
+                        $("#class_name").text(className);
 
-                        // Check if the class name has changed
                         if (className !== previousClassName) {
                             speakClassName(className); // Speak out the new class name
                             previousClassName = className; // Update the previous class name
@@ -45,4 +70,3 @@
     </script>
 </body>
 </html>
-
