@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Feed</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Video Feed with Class Name</h1>
+    <img id="video_feed" src="{{ url_for('video_feed') }}" width="640" height="480">
+    <div id="class_name">Class Name: Loading...</div>
+    <script>
+        $(document).ready(function(){
+            var previousClassName = ""; // Variable to store the previous class name
+
+            // Function to speak the class name
+            function speakClassName(className) {
+                var utterance = new SpeechSynthesisUtterance(className);
+                window.speechSynthesis.speak(utterance);
+            }
+
+            setInterval(function(){
+                $.ajax({
+                    url: "/get_class_name",
+                    type: "GET",
+                    success: function(response){
+                        var className = response.class_name;
+
+                        // Update the displayed class name
+                        $("#class_name").text("Class Name: " + className);
+
+                        // Check if the class name has changed
+                        if (className !== previousClassName) {
+                            speakClassName(className); // Speak out the new class name
+                            previousClassName = className; // Update the previous class name
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error fetching class name:", error);
+                    }
+                });
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
+
