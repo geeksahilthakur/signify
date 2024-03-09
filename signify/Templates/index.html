@@ -8,17 +8,20 @@
 </head>
 <style>
     .logo{
-        height: 70px;
+        width: 30%;
     }
     .back{
         background-color:#FFD426;
         width:15%;
         border: 2px solid #FFD426;
-         border-radius: 25px;
+        border-radius: 25px;
+        font-size: 45px;
+        font-weight: bolder;
+        padding: 1px;
     }
     .Webcam{
         box-shadow: rgba(246, 217, 0, 1) 0px 2px 12px;
-        border: 1px solid black;
+        border: 2px solid rgba(246, 217, 0, 1);
         border-radius: 25px;
     }
     .logo{
@@ -28,20 +31,20 @@
     h3{
         text-decoration:dotted;
         font-family:Georgia, 'Times New Roman', Times, serif;
+        font-size: 30px;
     }
 </style>
 <body>
     <center>
     <img class="logo" src="../static/logotop.gif">
     <div id="Welcome"></div>
-    <img class="Webcam" id="video_feed" src="{{ url_for('video_feed') }}" width="400" height="300">
+    <img class="Webcam" id="video_feed" src="{{ url_for('video_feed') }}" width="40%" height="550">
     <h3>User said</h3>
     <div class="back"id="class_name">Loading...</div></center>
     <script>
         $(document).ready(function(){
-            var previousClassName = ""; // Variable to store the previous class name
+            var previousClassName = "";
 
-            // Function to speak the class name
             function speakClassName(className) {
                 var utterance = new SpeechSynthesisUtterance(className);
                 window.speechSynthesis.speak(utterance);
@@ -57,8 +60,8 @@
                         $("#class_name").text(className);
 
                         if (className !== previousClassName) {
-                            speakClassName(className); // Speak out the new class name
-                            previousClassName = className; // Update the previous class name
+                            speakClassName(className);
+                            previousClassName = className; 
                         }
                     },
                     error: function(xhr, status, error) {
