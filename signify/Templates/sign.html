@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signify | Sign Chart</title>
+</head>
+<style>
+    .logo{
+        width: 30%;
+    }
+    .container{
+        display: flex;
+        width: 90%;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 4px;
+    }
+    .card {
+  position: relative;
+  width: 300px;
+  height: 230px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  perspective: 1000px;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  margin: 3px;
+}
+.container .card .img{
+  object-fit: contain;
+}
+.card svg {
+  width: 48px;
+  fill: #ffffff;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgb(14, 14, 13);
+}
+
+.card__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  transform: rotateX(-90deg);
+  transform-origin: bottom;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover .card__content {
+  transform: rotateX(0deg);
+}
+
+.card__title {
+  margin: 0;
+  font-size: 40px;
+  color: #FFD426;
+  font-weight: 700;
+}
+
+.card:hover svg {
+  scale: 0;
+}
+
+.card__description {
+  margin: 10px 0 0;
+  font-size: 16px;
+  color: #000000;
+  line-height: 1.4;
+}
+h1{
+        text-decoration:dotted;
+        font-family:Georgia, 'Times New Roman', Times, serif;
+    }
+    .btn {
+  font-size: 25px;
+  font-weight: 900;
+  background: transparent;
+  border: none;
+  padding: 1em 1em;
+  color: #000000;
+  text-transform: uppercase;
+  position:fixed;
+  left: 10px;
+  bottom: 10px;
+  transition: 0.5s ease;
+  cursor: pointer;
+  text-decoration: #ffc506 underline;
+
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background-color: #ffc506;
+  transition: 0.5s ease;
+}
+
+.btn:hover {
+  color: #1e1e2b;
+  transition-delay: 0.5s;
+}
+
+.btn:hover::before {
+  width: 100%;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 0;
+  width: 100%;
+  background-color: #ffc506;
+  transition: 0.4s ease;
+  z-index: -1;
+}
+
+.btn:hover::after {
+  height: 100%;
+  transition-delay: 0.4s;
+  color: aliceblue;
+}
+.card img{
+  height: 100%;
+}
+</style>
+<body><center>
+    <a class="btn" href="{{ url_for('home') }}">Home</a>
+    <img class="logo" src="../static/logotop.gif">
+ 
+  <div class="container">
+    <div class="card">
+        <img src="../static/hello.jpeg">
+        <div class="card__content">
+          <p class="card__title">Hello</p>
+          <p class="card__description">
+            "Hello," a simple greeting echoing through cultures and languages, bridging distances with warmth. It's the spark igniting conversations, the gateway to new connections.</p>
+        </div>
+      </div>
+    <div class="card">
+        <img src="../static/we team.jpeg">
+        <div class="card__content">
+          <p class="card__title">We team</p>
+          <p class="card__description">
+            This is a thumbs up sign which is used to represent WE TEAM </p>
+        </div>
+      </div>
+
+    <div class="card">
+      <img src="../static/Coder X.jpg">
+      <div class="card__content">
+        <p class="card__title">Coder X</p>
+        <p class="card__description">
+          This Sign indicates Our team which is known as Coder X </p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="../static/present.png">
+      <div class="card__content">
+        <p class="card__title">Present</p>
+        <p class="card__description">This sign represents "Present" something which we can use in our daily life  </p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="../static/signify.jpg">
+      <div class="card__content">
+        <p class="card__title">Signify</p>
+        <p class="card__description">This sign Represents Signify "SPEAK WIITH YOUR HANDS" which is used by the dumb peoples,Signify can remove the communication gap by just converting the Sign Language into Audio. </p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="../static/how r u.jpg">
+      <div class="card__content">
+        <p class="card__title">How are you</p>
+        <p class="card__description">This is a hand gesture used to represent "How Are You"</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="../static/i m fine.png">
+      <div class="card__content">
+        <p class="card__title">I am Fine</p>
+        <p class="card__description">This is a hand gesture used to represent "I am Fine"</p>
+      </div>
+    </div>
+
+  </div>
+</center>
+</body>
+</html>
