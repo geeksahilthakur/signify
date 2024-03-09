@@ -5,13 +5,10 @@ import numpy as np
 
 app = Flask(__name__)
 
-# Load the model
 model = load_model("keras_model.h5", compile=True)
 
-# Load the labels
 class_names = [line.strip() for line in open("labels.txt")]
 
-# Global variable to store the current class name
 current_class_name = "Loading..."
 
 
@@ -36,9 +33,8 @@ def generate_frames(camera):
         class_name = class_names[index]
         confidence_score = prediction[0][index]
 
-        # Update the global variable with the current class name if confidence score > 85
         global current_class_name
-        if confidence_score > 0.85:
+        if confidence_score > 0.9:
             current_class_name = class_name
 
         ret, buffer = cv2.imencode('.jpg', frame)
