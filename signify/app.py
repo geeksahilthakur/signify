@@ -1,3 +1,6 @@
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 from flask import Flask, render_template, Response, jsonify
 from keras.models import load_model
 import cv2
