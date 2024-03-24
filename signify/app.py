@@ -5,11 +5,14 @@ from flask import Flask, render_template, Response, jsonify
 from keras.models import load_model
 import cv2
 import numpy as np
+from tensorflow.keras.optimizers import Adam
 
 app = Flask(__name__)
 
 model = load_model("keras_model.h5", compile=True)
-model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+
+optimizer = Adam()
+model.compile(optimizer=optimizer, loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
 class_names = [line.strip() for line in open("labels.txt")]
 
