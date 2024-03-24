@@ -3,6 +3,4 @@ numpy==1.26.4
 keras==2.15.0
 opencv-python==4.9.0.80
 tensorflow==2.15.0
-werkzeug
-itsdangerous
 gunicorn==21.2.0
