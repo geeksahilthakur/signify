@@ -1,20 +1,21 @@
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
-
 from flask import Flask, render_template, Response, jsonify
 from keras.models import load_model
 import cv2
 import numpy as np
 from tensorflow.keras.optimizers import Adam
 
-app = Flask(__name__, template_folder="templates")  # Specify the template folder explicitly
+app = Flask(__name__)
 
-model = load_model("keras_model.h5", compile=True)
+# Specify the relative path to keras_model.h5
+MODEL_FILE_PATH = "signify/keras_model.h5"
+
+model = load_model(MODEL_FILE_PATH, compile=True)
 
 optimizer = Adam()
 model.compile(optimizer=optimizer, loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
-class_names = [line.strip() for line in open("labels.txt")]
+class_names = [line.strip() for line in open("signify/labels.txt")]
 
 current_class_name = "Loading..."
 
