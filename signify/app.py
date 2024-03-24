@@ -6,6 +6,7 @@ import numpy as np
 app = Flask(__name__)
 
 model = load_model("keras_model.h5", compile=True)
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
 class_names = [line.strip() for line in open("labels.txt")]
 
