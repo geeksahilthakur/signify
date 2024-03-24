@@ -8,7 +8,7 @@ from tensorflow.keras.optimizers import Adam
 app = Flask(__name__)
 
 # Specify the relative path to keras_model.h5
-MODEL_FILE_PATH = "signify/keras_model.h5"
+MODEL_FILE_PATH = "signify/signify/keras_model.h5"
 
 # Load the model without compiling it
 model = load_model(MODEL_FILE_PATH)
