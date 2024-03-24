@@ -7,7 +7,7 @@ import cv2
 import numpy as np
 from tensorflow.keras.optimizers import Adam
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="templates")  # Specify the template folder explicitly
 
 model = load_model("keras_model.h5", compile=True)
 
