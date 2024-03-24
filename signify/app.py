@@ -10,11 +10,14 @@ app = Flask(__name__)
 # Specify the relative path to keras_model.h5
 MODEL_FILE_PATH = "signify/keras_model.h5"
 
-model = load_model(MODEL_FILE_PATH, compile=True)
+# Load the model without compiling it
+model = load_model(MODEL_FILE_PATH)
 
+# Compile the model manually
 optimizer = Adam()
 model.compile(optimizer=optimizer, loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
+# Load class names
 class_names = [line.strip() for line in open("signify/labels.txt")]
 
 current_class_name = "Loading..."
