@@ -7,18 +7,21 @@ from tensorflow.keras.optimizers import Adam
 
 app = Flask(__name__)
 
-# Specify the relative path to keras_model.h5
-MODEL_FILE_PATH = "signify/signify/keras_model.h5"
+# Get the directory path of the current script (app.py)
+base_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Load the model without compiling it
+# Specify the relative path to keras_model.h5
+MODEL_FILE_PATH = os.path.join(base_dir, "signify/keras_model.h5")
+
+# Load the model
 model = load_model(MODEL_FILE_PATH)
 
-# Compile the model manually
 optimizer = Adam()
 model.compile(optimizer=optimizer, loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
 # Load class names
-class_names = [line.strip() for line in open("signify/labels.txt")]
+class_names_file = os.path.join(base_dir, "signify/labels.txt")
+class_names = [line.strip() for line in open(class_names_file)]
 
 current_class_name = "Loading..."
 
